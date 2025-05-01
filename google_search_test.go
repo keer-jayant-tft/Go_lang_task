@@ -20,7 +20,7 @@ var _ = Describe("Google Search Automation", func() {
 		var allocCtx context.Context
 		allocCtx, allocCancel = chromedp.NewExecAllocator(context.Background(),
 			append(chromedp.DefaultExecAllocatorOptions[:],
-				chromedp.Flag("headless", false),       // run in visible mode
+				chromedp.Flag("headless", true),        // run in visible mode
 				chromedp.Flag("disable-gpu", false),    // use GPU
 				chromedp.Flag("start-maximized", true), // full window
 			)...,
