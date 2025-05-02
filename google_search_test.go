@@ -38,16 +38,30 @@ var _ = Describe("Google Search Automation", func() {
 	It("should search for 'Apple device' and click the first link", func() {
 		var firstLink string
 		err := chromedp.Run(ctx,
+
+			// i was facing catcha issue with  google chrome so i try to seach with duckducgo
+
+			// chromedp.Navigate(`https://www.google.com`),
+			// chromedp.Sleep(2*time.Second), //
+
+			// chromedp.WaitVisible(`#APjFqb`, chromedp.ByID),
+			// chromedp.SendKeys(`#APjFqb`, "Apple device\n", chromedp.ByID),
+			// chromedp.WaitVisible(`#search`, chromedp.ByID),
+
+			// chromedp.Sleep(2*time.Second),
+			// chromedp.Click(`h3`, chromedp.NodeVisible, chromedp.ByQuery), // first result
+			// chromedp.Sleep(3*time.Second),
+
 			chromedp.Navigate(`https://duckduckgo.com/`),
 			chromedp.Sleep(2*time.Second),
 
 			chromedp.SendKeys(`#searchbox_input`, "Apple device\n", chromedp.ByID),
 			chromedp.WaitVisible(`[data-testid="result-title-a"]`, chromedp.ByQuery),
 			chromedp.Sleep(3*time.Second),
-			chromedp.Text(`(//a[@data-testid="result-title-a"])[1]`, &firstLink, chromedp.BySearch),
-			chromedp.Click(`(//a[@data-testid="result-title-a"])[1]`, chromedp.BySearch),
+			chromedp.Text(`(//a[@data-testid="result-title-a"])[2]`, &firstLink, chromedp.BySearch),
+			chromedp.Click(`(//a[@data-testid="result-title-a"])[2]`, chromedp.BySearch),
 
-			chromedp.Sleep(3*time.Second),
+			chromedp.Sleep(7*time.Second),
 		)
 
 		Expect(err).To(BeNil())
