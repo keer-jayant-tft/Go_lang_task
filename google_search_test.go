@@ -16,17 +16,17 @@ var _ = Describe("Google Search Automation", func() {
 	var allocCancel context.CancelFunc
 
 	BeforeEach(func() {
-		// Step 1: Create an ExecAllocator with visible Chrome
+		//  Create an ExecAllocator with visible Chrome
 		var allocCtx context.Context
 		allocCtx, allocCancel = chromedp.NewExecAllocator(context.Background(),
 			append(chromedp.DefaultExecAllocatorOptions[:],
-				chromedp.Flag("headless", true),        // run in visible mode
-				chromedp.Flag("disable-gpu", false),    // use GPU
-				chromedp.Flag("start-maximized", true), // full window
+				chromedp.Flag("headless", true),
+				chromedp.Flag("disable-gpu", false),
+				chromedp.Flag("start-maximized", true),
 			)...,
 		)
 
-		// Step 2: Create a new browser context
+		// Create a new browser context
 		ctx, cancel = chromedp.NewContext(allocCtx)
 	})
 
